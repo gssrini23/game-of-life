@@ -34,7 +34,7 @@ spec:
 
       - name: gameoflife
 
-        image: gsrini23/gameoflifeadimage:"$(version)"
+        image: gsrini23/releasetest:"$(version)"
 
         ports:
 
