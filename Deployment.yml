@@ -1,129 +1,41 @@
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
+apiVersion: apps/v1
 
+kind: Deployment
 
+metadata:
 
-kind: Deployment 
+  name: gameoflifedeployment
 
-
-
-metadata: 
-
-
-
-  name: gameoflife
-
-
-
-spec: 
-
-
-
-  selector: 
-
-
-
-    matchLabels: 
-
-
-
-      app:  gameoflife 
-
-
-
-  replicas: 5 # tells deployment to run 2 pods matching the template 
-
-
-
-  template:
-
-
-
-    metadata: 
-
-
-
-      labels: 
-
-
-
-        app:  gameoflife
-
-
-
-    spec: 
-
-
-
-      containers: 
-
-
-
-      - name:  gameoflife 
-
-
-
-        image: gsrini23/gameoflife:$(Build.BuildId)#
-
-
-
-        ports: 
-
-
-
-        - containerPort: 80 
-
-
-
---- 
-
-
-
-# https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service  
-
-
-
-kind: Service 
-
-
-
-apiVersion: v1 
-
-
-
-metadata: 
-
-
-
-  name:  gameoflife
-
-
-
-spec: 
-
-
-
-  selector: 
-
-
+  labels:
 
     app: gameoflife
 
+spec:
 
+  replicas: 6
 
-  ports: 
+  selector:
 
+    matchLabels:
 
+      app: gameoflife
 
-  - protocol: TCP 
+  template:
 
+    metadata:
 
+      labels:
 
-    port: 80 
+        app: gameoflife
 
+    spec:
 
+      containers:
 
-    targetPort: 80 
+      - name: gameoflife
 
+        image: gsrini23/gameoflifeadimage:"$(version)"
 
+        ports:
 
-  type: LoadBalancer 
+        - containerPort: 8080
