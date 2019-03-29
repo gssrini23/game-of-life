@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: gameoflife
-        image: gsrini23/releasetest:${BUILDNUMBER}
+        image: hello-world
         ports:
         - containerPort: 8080
