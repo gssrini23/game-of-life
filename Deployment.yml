@@ -1,21 +1,22 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: gameoflifeadimagedeployment
+  name: gameoflife
+  namespace: gameoflife
   labels:
-    app: gameoflifeadimage
+    app: gameoflife
 spec:
-  replicas: 6
+  replicas: 1
   selector:
     matchLabels:
-      app: gameoflifeadimage
+      app: gameoflife
   template:
     metadata:
       labels:
-        app: gameoflifeadimage
+        app: gameoflife
     spec:
       containers:
-      - name: myweb
-        image: gsrini23/gameoflifeadimage:"$(version)"
+      - name: gameoflife
+        image: gsrini23/releasetest:${BUILDNUMBER}
         ports:
         - containerPort: 8080
